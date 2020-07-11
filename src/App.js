@@ -10,7 +10,8 @@ function App() {
   const todoData = [
     {label: 'Item 1 new', important: false, id: 1},
     {label: 'Item 2', important: true, id: 2},
-    {label: 'Item 3', important: false, id: 3}
+    {label: 'Item 3', important: false, id: 3},
+    {label: 'Item 4', important: false, id: 4}
   ]
   
   
