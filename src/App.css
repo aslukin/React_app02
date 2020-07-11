@@ -1,5 +1,8 @@
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import '~font-awesome/css/font-awesome.min.css';
+
+
 
 .todo-app {
   margin: 2rem auto 0 auto;
