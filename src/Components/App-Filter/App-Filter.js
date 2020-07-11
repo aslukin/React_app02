@@ -1,13 +1,12 @@
 import React from 'react'
-import './App-Filter'
+import './App-Filter.css'
 
 
 
 const AppFilter = () => {
     return (
         <div className="SearchFilter">
-            <input className = "search-input" type="text" placeholder="Filter string"></input>
-            <p>some text</p>
+            <input className = "form-control search-input" type="text" placeholder="Filter string"></input>
             <div className="btn-group">
                 <button type="button"
                     className="btn btn-info">All</button>

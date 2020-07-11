@@ -1,0 +1,16 @@
+.addItem{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+
+}
+
+.add-item-text{
+    position: relative;
+}
+
+.add-item-button{
+    position: relative;
+}

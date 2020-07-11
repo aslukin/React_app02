@@ -16,7 +16,7 @@ function App() {
   
   
   return (
-    <div >
+    <div className="todo-app">
       <AppHeader />
       <AppFilter />
       <TodoList todos={todoData}/>
