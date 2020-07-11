@@ -3,8 +3,9 @@ import React from 'react'
 const addItem = () => {
     return(
         <div>
-            AddItem div
+            <input type="test" placeholder = "placeholder"></input>
         </div>
+        
     )
 }
 
