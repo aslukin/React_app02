@@ -1,3 +1,3 @@
-import appFilter from './App-Filter'
+import AppFilter from './App-Filter'
 
-export default appFilter
+export default AppFilter

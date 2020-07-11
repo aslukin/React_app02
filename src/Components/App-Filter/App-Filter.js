@@ -3,7 +3,7 @@ import './App-Filter'
 
 
 
-const appFilter = () => {
+const AppFilter = () => {
     return (
         <div className="SearchFilter">
             <input className = "search-input" type="text" placeholder="Filter string"></input>
@@ -20,5 +20,5 @@ const appFilter = () => {
     )
 }
 
-export default appFilter;
+export default AppFilter;
 

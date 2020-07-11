@@ -1,3 +1,3 @@
-import addItem from './Add-Item'
+import AddItem from './Add-Item'
 
-export default addItem
+export default AddItem

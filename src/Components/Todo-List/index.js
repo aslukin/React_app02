@@ -1,4 +1,4 @@
-import todoList from "./Todo-List";
+import TodoList from "./Todo-List";
 
 
-export default todoList;
+export default TodoList;

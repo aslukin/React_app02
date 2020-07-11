@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+
 import './App-Header.css'
 
-const appHeader = () => {
+const AppHeader = () => {
     return(
         <div>
             <h1>Header</h1>
@@ -10,4 +10,4 @@ const appHeader = () => {
     )
 }
 
-export default appHeader;
+export default AppHeader;
