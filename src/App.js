@@ -5,26 +5,96 @@ import AppFilter from './Components/App-Filter';
 import TodoList from './Components/Todo-List';
 import AddItem from './Components/Add-Item';
 
-function App() {
+export default class App extends React.Component {
+
+  counter = 100;
+  state = {
+    todoData: [
+      this.createNewItem('Item 1'),
+      this.createNewItem('Item 2'),
+      this.createNewItem('Item 3'),
+      this.createNewItem('Item 4')
+    ]
+  }
+
+  createNewItem(newLabel) {
+    return {
+      
+      label: newLabel,
+      important: false,
+      done: false,
+      id: this.counter++
   
-  const todoData = [
-    {label: 'Item 1 new', important: false, id: 1},
-    {label: 'Item 2', important: true, id: 2},
-    {label: 'Item 3', important: false, id: 3},
-    {label: 'Item 4', important: false, id: 4}
-  ]
+  }
+}
+
+
+onItemDelete = (id) => {
+  this.setState(({ todoData }) => {
+    const idx = todoData.findIndex((el) => el.id === id);
+
+    const before = todoData.slice(0, idx);
+    const after = todoData.slice(idx + 1)
+    const newTodoData = [...before, ...after]
+
+    return {
+      todoData: newTodoData
+    }
+  })
+}
+
+onItemAdd = (newText) => {
+  const newItem = this.createNewItem(newText)
   
-  
-  
+  this.setState(({ todoData }) => {
+    const newTodoData = [...todoData, newItem]
+    return {
+      todoData: newTodoData
+    }
+  })
+}
+
+
+onToggleDone = (id) => {
+
+  console.log('OnToggleDone :>> ', id);
+  this.setState(({todoData})=> {
+// wrong code    
+    
+    const newTodoData=[]    
+    return {
+      todoData: newTodoData
+    }
+  })
+}
+
+onToggleImportant = (id) => {
+  console.log('OnToggleimportant :>> ', id);
+  this.setState(({todoData})=> {
+// wrong code
+
+    const newTodoData=[]    
+
+    return {
+      todoData: newTodoData
+    }
+  })
+
+}
+
+render() {
   return (
     <div className="todo-app">
       <AppHeader />
       <AppFilter />
-      <TodoList todos={todoData}/>
-      <AddItem />
-
+      <TodoList todos={this.state.todoData}
+        onItemDelete={this.onItemDelete}
+        onToggleDone={this.onToggleDone}
+        onToggleImportant={this.onToggleImportant}
+      />
+      <AddItem onItemAdd={this.onItemAdd} />
     </div>
   );
 }
+}
 
-export default App;
