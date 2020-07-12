@@ -1,4 +1,7 @@
+.bigfont {
+  font-size: 36;
 
+}
 
 .todo-list-item {
     display: flex;
@@ -15,14 +18,19 @@
     line-height: 35px;
     cursor: pointer;
     user-select: none;
+  
   }
   
-  .todo-list-item.done .todo-list-item-label {
+
+  .item-done  {
     text-decoration: line-through;
   }
   
-  .todo-list-item.important .todo-list-item-label {
-    font-weight: bold;
+
+  
+  .item-important  {
+    font-weight:  bold;
     color: steelblue;
   }
+
   
