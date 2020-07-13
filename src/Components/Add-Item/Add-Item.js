@@ -3,15 +3,35 @@ import './Add-Item.css'
 
 export default class AddItem extends React.Component {
 
+    state = {
+        label: ''
+    }
+
+    onInputChange = (e) => {
+        this.setState({
+            label: e.target.value
+        })
+
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.props.onItemAdd(this.state.label)
+    }
+
     render() {
         return (
-            <div className="addItem">
-                <input type="test" className="form-control add-item-text" placeholder="Text for new item"></input>
+            <form className="addItem"
+                onSubmit={this.onSubmit}>
+                <input type="text"
+                    className="form-control add-item-text"
+                    placeholder="Text for new item"
+                    onChange={this.onInputChange}></input>
                 <button type="submit" className="btn btn-primary add-item-button"
-                    onClick={()=>{ this.props.onItemAdd(`test`)}}>
+                >
                     Submit
                     </button>
-            </div>
+            </form>
 
         )
     }

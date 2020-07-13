@@ -80,9 +80,17 @@ export default class App extends React.Component {
   }
 
   render() {
+
+    const doneCount = this.state.todoData.filter((el) => el.done).length
+    const openCount = this.state.todoData.length - doneCount
+    const openImportantCount = this.state.todoData.filter((el) => !el.done && el.important).length
+
     return (
       <div className="todo-app">
-        <AppHeader />
+        <AppHeader openCount={openCount}
+          doneCount={doneCount}
+          openImportantCount={openImportantCount} />
+
         <AppFilter />
         <TodoList todos={this.state.todoData}
           onItemDelete={this.onItemDelete}
