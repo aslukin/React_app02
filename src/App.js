@@ -28,21 +28,6 @@ export default class App extends React.Component {
   }
 }
 
-
-onItemDelete = (id) => {
-  this.setState(({ todoData }) => {
-    const idx = todoData.findIndex((el) => el.id === id);
-
-    const before = todoData.slice(0, idx);
-    const after = todoData.slice(idx + 1)
-    const newTodoData = [...before, ...after]
-
-    return {
-      todoData: newTodoData
-    }
-  })
-}
-
 onItemAdd = (newText) => {
   const newItem = this.createNewItem(newText)
   
@@ -55,13 +40,28 @@ onItemAdd = (newText) => {
 }
 
 
-onToggleDone = (id) => {
+onItemDelete = (id) => {
+  this.setState(({ todoData }) => {
+    const idx = todoData.findIndex((el) => el.id === id);
 
-  console.log('OnToggleDone :>> ', id);
+    const before = todoData.slice(0, idx);
+    const after = todoData.slice(idx + 1)
+    const newTodoData = [...before, ...after]
+   
+    return {
+      todoData: newTodoData
+  }})
+}
+
+
+
+onToggleDone = (id) => {
+  const newTodoData = [...this.state.todoData]
+  const idx=newTodoData.findIndex((el) => el.id === id);
+  if (idx>=0){
+    newTodoData[idx].done = !newTodoData[idx].done 
+  }
   this.setState(({todoData})=> {
-// wrong code    
-    
-    const newTodoData=[]    
     return {
       todoData: newTodoData
     }
@@ -69,17 +69,16 @@ onToggleDone = (id) => {
 }
 
 onToggleImportant = (id) => {
-  console.log('OnToggleimportant :>> ', id);
+  const newTodoData = [...this.state.todoData]
+  const idx=newTodoData.findIndex((el) => el.id === id);
+  if (idx>=0){
+    newTodoData[idx].important = !newTodoData[idx].important 
+  }
   this.setState(({todoData})=> {
-// wrong code
-
-    const newTodoData=[]    
-
     return {
       todoData: newTodoData
     }
   })
-
 }
 
 render() {
