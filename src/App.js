@@ -12,10 +12,7 @@ export default class App extends React.Component {
 
   counter = 100;
   state = {
-    todoData: [
-      this.createNewItem('item 1'),
-      this.createNewItem('Item 2')
-    ],
+    todoData: [ ],
     filterString: '',
     filterStatus: FILTER_STATUS_ALL
   }
