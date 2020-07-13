@@ -32,14 +32,17 @@ export default class App extends React.Component {
   }
 
   onItemAdd = (newText) => {
-    const newItem = this.createNewItem(newText)
 
-    this.setState(({ todoData }) => {
-      const newTodoData = [...todoData, newItem]
-      return {
-        todoData: newTodoData
-      }
-    })
+    if (newText.length > 0) {
+      const newItem = this.createNewItem(newText)
+
+      this.setState(({ todoData }) => {
+        const newTodoData = [...todoData, newItem]
+        return {
+          todoData: newTodoData
+        }
+      })
+    }
   }
 
   onItemDelete = (id) => {
@@ -82,20 +85,33 @@ export default class App extends React.Component {
     })
   }
 
-  onFilterStringChange = () => {
-
+  onFilterStringChange = (newFilterString) => {
+    this.setState(() => {
+      return {
+        filterString: newFilterString
+      }
+    })
   }
 
   onFilterAll = () => {
+    this.setState(() => {
+      return {
+        filterStatus: FILTER_STATUS_ALL
+      }
+    })
 
   }
 
   onFilterActive = () => {
+    this.setState(() => {
+      return {
+        filterStatus: FILTER_STATUS_ACTIVE
+      }
+    })
 
   }
 
   onFilterDone = () => {
-    console.log('FilterDone :>> ', this.state.filterStatus);
     this.setState(() => {
       return {
         filterStatus: FILTER_STATUS_DONE
@@ -105,21 +121,12 @@ export default class App extends React.Component {
 
   search(items, filterString, filterStatus) {
 
-    let visibleItems = [];
-
-    if (filterString.length > 0) {
-      visibleItems = items.filter((el) => {
-        return (el.label.indexOf(filterString) >= 0) &&
-          ((filterStatus === FILTER_STATUS_ALL) ||
-            ((filterStatus === FILTER_STATUS_ACTIVE) && (!el.done)) ||
-            ((filterStatus === FILTER_STATUS_DONE) && (el.done)))
-
-      })
-
-    } else {
-      visibleItems = items;
-    }
-    return visibleItems
+    return items.filter((el) => {
+      return (el.label.indexOf(filterString) >= 0) &&
+        ((filterStatus === FILTER_STATUS_ALL) ||
+          ((filterStatus === FILTER_STATUS_ACTIVE) && (!el.done)) ||
+          ((filterStatus === FILTER_STATUS_DONE) && (el.done)))
+    })
   }
 
 
@@ -138,6 +145,9 @@ export default class App extends React.Component {
           openImportantCount={openImportantCount} />
 
         <AppFilter
+          filterString={this.state.filterString}
+          filterStatus={this.state.filterStatus}
+
           onFilterStringChange={this.onFilterStringChange}
           onFilterAll={this.onFilterAll}
           onFilterActive={this.onFilterActive}

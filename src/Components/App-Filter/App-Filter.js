@@ -6,42 +6,37 @@ import "./App-Filter.css";
 
 export default class AppFilter extends React.Component {
 
-  // state = {
-  //   filterString: '',
-  //   filterStatus: FILTER_STATUS_ALL
-  // }
 
-  // onFilterChange = () => {
-
-  // }
+  onFilterChange = (e) => {
+    this.props.onFilterStringChange(e.target.value)
+  }
 
   onAllClick = () => {
+    this.props.onFilterAll()
   }
 
   onActiveClick = () => {
-
+    this.props.onFilterActive()
   }
 
   onDoneClick = () => {
-    return this.props.onFilterDone
+    this.props.onFilterDone()
   }
 
 
   render() {
 
-    const btn1ClassName = "btn btn-info" 
-    // (this.state.filterStatus === FILTER_STATUS_ALL) ? "btn btn-info" : "btn btn-outline-secondary";
-    const btn2ClassName = "btn btn-outline-secondary"
-    //  (this.state.filterStatus === FILTER_STATUS_ACTIVE) ? "btn btn-info" : "btn btn-outline-secondary"
-    const btn3ClassName = "btn btn-outline-secondary"
-    // (this.state.filterStatus === FILTER_STATUS_DONE) ? "btn btn-info" : "btn btn-outline-secondary"
-    
+    const btn1ClassName = (this.props.filterStatus === FILTER_STATUS_ALL) ? "btn btn-info" : "btn btn-outline-secondary";
+    const btn2ClassName = (this.props.filterStatus === FILTER_STATUS_ACTIVE) ? "btn btn-info" : "btn btn-outline-secondary"
+    const btn3ClassName = (this.props.filterStatus === FILTER_STATUS_DONE) ? "btn btn-info" : "btn btn-outline-secondary"
+
     return (
       <div className="SearchFilter">
         <input
           className="form-control search-input"
           type="text"
           placeholder="Filter string"
+          onChange={this.onFilterChange}
         ></input>
 
         <div className="btn-group">
