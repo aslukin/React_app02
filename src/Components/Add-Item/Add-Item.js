@@ -17,6 +17,10 @@ export default class AddItem extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.onItemAdd(this.state.label)
+        this.setState({
+            label: ''
+        })
+
     }
 
     render() {
@@ -26,7 +30,8 @@ export default class AddItem extends React.Component {
                 <input type="text"
                     className="form-control add-item-text"
                     placeholder="Text for new item"
-                    onChange={this.onInputChange}></input>
+                    onChange={this.onInputChange}
+                    value={this.state.label}></input>
                 <button type="submit" className="btn btn-primary add-item-button"
                 >
                     Submit

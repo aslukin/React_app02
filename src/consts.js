@@ -1,0 +1,13 @@
+// const FILTER_STATUS_ALL = 0
+// const FILTER_STATUS_ACTIVE = 1
+// const FILTER_STATUS_DONE = 2
+
+
+export const FILTER_STATUS_ALL = 0;
+export const FILTER_STATUS_ACTIVE = 1;
+export const  FILTER_STATUS_DONE = 2
+
+
+
+
+// export FILTER_STATUS_ALL,  FILTER_STATUS_ACTIVE, FILTER_STATUS_DONE 

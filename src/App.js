@@ -1,20 +1,20 @@
 import React from 'react';
+import { FILTER_STATUS_ALL, FILTER_STATUS_ACTIVE, FILTER_STATUS_DONE } from './consts'
+
 import './App.css';
 import AppHeader from './Components/App-Header';
 import AppFilter from './Components/App-Filter';
 import TodoList from './Components/Todo-List';
 import AddItem from './Components/Add-Item';
 
+
 export default class App extends React.Component {
 
   counter = 100;
   state = {
-    todoData: [
-      this.createNewItem('Item 1'),
-      this.createNewItem('Item 2'),
-      this.createNewItem('Item 3'),
-      this.createNewItem('Item 4')
-    ]
+    todoData: [],
+    filterString: '',
+    filterStatus: FILTER_STATUS_ALL
   }
 
   createNewItem(newLabel) {
