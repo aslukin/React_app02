@@ -23,7 +23,7 @@ export default class AppFilter extends React.Component {
   }
 
   onDoneClick = () => {
-
+    return this.props.onFilterDone
   }
 
 

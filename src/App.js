@@ -12,7 +12,10 @@ export default class App extends React.Component {
 
   counter = 100;
   state = {
-    todoData: [],
+    todoData: [
+      this.createNewItem('item 1'),
+      this.createNewItem('Item 2')
+    ],
     filterString: '',
     filterStatus: FILTER_STATUS_ALL
   }
@@ -79,11 +82,54 @@ export default class App extends React.Component {
     })
   }
 
+  onFilterStringChange = () => {
+
+  }
+
+  onFilterAll = () => {
+
+  }
+
+  onFilterActive = () => {
+
+  }
+
+  onFilterDone = () => {
+    console.log('FilterDone :>> ', this.state.filterStatus);
+    this.setState(() => {
+      return {
+        filterStatus: FILTER_STATUS_DONE
+      }
+    })
+  }
+
+  search(items, filterString, filterStatus) {
+
+    let visibleItems = [];
+
+    if (filterString.length > 0) {
+      visibleItems = items.filter((el) => {
+        return (el.label.indexOf(filterString) >= 0) &&
+          ((filterStatus === FILTER_STATUS_ALL) ||
+            ((filterStatus === FILTER_STATUS_ACTIVE) && (!el.done)) ||
+            ((filterStatus === FILTER_STATUS_DONE) && (el.done)))
+
+      })
+
+    } else {
+      visibleItems = items;
+    }
+    return visibleItems
+  }
+
+
   render() {
 
     const doneCount = this.state.todoData.filter((el) => el.done).length
     const openCount = this.state.todoData.length - doneCount
     const openImportantCount = this.state.todoData.filter((el) => !el.done && el.important).length
+
+    const visibleItems = this.search(this.state.todoData, this.state.filterString, this.state.filterStatus)
 
     return (
       <div className="todo-app">
@@ -91,8 +137,14 @@ export default class App extends React.Component {
           doneCount={doneCount}
           openImportantCount={openImportantCount} />
 
-        <AppFilter />
-        <TodoList todos={this.state.todoData}
+        <AppFilter
+          onFilterStringChange={this.onFilterStringChange}
+          onFilterAll={this.onFilterAll}
+          onFilterActive={this.onFilterActive}
+          onFilterDone={this.onFilterDone}
+        />
+
+        <TodoList todos={visibleItems}
           onItemDelete={this.onItemDelete}
           onToggleDone={this.onToggleDone}
           onToggleImportant={this.onToggleImportant}
